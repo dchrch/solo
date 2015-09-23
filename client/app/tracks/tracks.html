@@ -1,1 +1,9 @@
-<h3>Tracks View</h3>
+<div class='container'>
+  <h3>Track Collection</h3>
+  <br>
+  <div class="song" ng-repeat="song in data.tracks">
+    <h4>{{song.artist}} - {{song.title}}</h4>
+    <audio src="{{song.url}}" controls>
+    </audio>
+  </div>
+</div>

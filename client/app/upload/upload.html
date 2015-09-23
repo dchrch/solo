@@ -1,1 +1,25 @@
-<h3>Upload View</h3>
+<div class="container">
+  <h3>Upload A Track</h3>
+  <form class="form-group" action="https://hr-soundbase.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="key" value="${filename}">
+    <input type="hidden" name="bucket" value="hr-soundbase">
+    <input type="hidden" name="AWSAccessKeyId" value="AKIAIFZF4MBBRUPEVUZA">
+    <input type="hidden" name="acl" value="public-read">
+    <input type="hidden" name="success_action_redirect" value="http://localhost:3000/">
+    <input type="hidden" name="policy" value="ewogICJleHBpcmF0aW9uIjogIjIwMTUtMDktMjNUMDQ6MzU6MDBaIiwKICAiY29uZGl0aW9ucyI6IFsKICAgIHsiYnVja2V0IjogImhyLXNvdW5kYmFzZSJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIka2V5IiwgIiJdLAogICAgeyJhY2wiOiAicHVibGljLXJlYWQifSwKICAgIHsic3VjY2Vzc19hY3Rpb25fcmVkaXJlY3QiOiAiaHR0cDovL2xvY2FsaG9zdDozMDAwLyJ9LAogICAgWyJzdGFydHMtd2l0aCIsICIkQ29udGVudC1UeXBlIiwgImF1ZGlvIl0sCiAgICBbImNvbnRlbnQtbGVuZ3RoLXJhbmdlIiwgMCwgNTI0Mjg4MDAwXQogIF0KfQ==">
+    <input type="hidden" name="signature" value="xXRtsaXM85ukDyqHk8a4nDUDtWw=">
+    <input type="hidden" name="Content-Type" value="audio">
+
+    <label>File input</label>
+    <input name="file" type="file" fileread="track.url" required>
+    <br>
+    <label>Artist Name</label>
+    <input class="form-control" type="text" ng-model="track.artist" placeholder="Artist" required>
+    <br>
+    <label>Track Title</label>
+    <input class="form-control" type="text" ng-model="track.title" placeholder="Song Title" required>
+    <br>
+    <input class="btn btn-default" type="submit" value="Upload File" ng-click="addTrack()">
+    <img src="assets/spiffygif_46x46.gif" ng-show="loading">
+  </form>
+</div>

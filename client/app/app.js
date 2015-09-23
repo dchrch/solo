@@ -2,10 +2,11 @@ angular.module('soundbase', [
   'soundbase.services',
   'soundbase.tracks',
   'soundbase.upload',
-  'ngRoute'
+  'ngRoute',
+  'ngFileUpload'
 ])
 
-.config(['$routeProvider', function($routeProvider) {
+.config(['$routeProvider', function ($routeProvider) {
   $routeProvider
     .when('/tracks', {
       templateUrl: 'app/tracks/tracks.html',
