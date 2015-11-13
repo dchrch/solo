@@ -2,8 +2,7 @@ angular.module('soundbase', [
   'soundbase.services',
   'soundbase.tracks',
   'soundbase.upload',
-  'ngRoute',
-  'ngFileUpload'
+  'ngRoute'
 ])
 
 .config(['$routeProvider', function ($routeProvider) {

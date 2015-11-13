@@ -1,4 +1,4 @@
-angular.module('soundbase.upload', ['ngFileUpload'])
+angular.module('soundbase.upload', [])
 
 .controller('UploadController', ['$scope', '$location', 'Tracks', function ($scope, $location, Tracks) {
   $scope.track = {};
