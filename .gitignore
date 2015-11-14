@@ -16,3 +16,4 @@ Icon
 .Trashes
 node_modules/
 client/lib
+server/config/secret.js

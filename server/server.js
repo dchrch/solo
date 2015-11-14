@@ -1,17 +1,42 @@
 var express = require('express');
 var mongoose = require('mongoose');
-// var passport = require('passport');
-// var JwtStrategy = require('passport-jwt').Strategy;
-
+var passport = require('passport');
+var JwtStrategy = require('passport-jwt').Strategy;
+var errorHandler = require('express-error-handler');
+var morgan      = require('morgan');
+var bodyParser  = require('body-parser');
+var config = require('./config/config');
+var strategies = require('./config/strategies');
 
 var app = express();
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || config.port);
 
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/soundbase');
+var dbURI = process.env.MONGOLAB_URI || config.localdb;
+mongoose.connect(dbURI);
 var db = mongoose.connection;
 
-require('./config/middleware.js')(app, express);
+db.on('error', function(err) {
+  console.error('Mongoose connection error, retrying in 5 seconds.');
+  setTimeout(function() {
+    mongoose.connect(dbURI);
+  }, 5000);
+});
+db.on('connected', function() {
+  console.log('Mongoose connection open to ' + dbURI);
+});
+db.on('disconnected', function() {
+  console.log('Mongoose connection disconnected.');
+});
 
-// passport.use(new JwtStrategy(strategies.jwtOpts, strategies.jwtAuth));
+app.use(morgan('dev'));
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(express.static(__dirname + '/../client'));
+
+require('./router.js')(app, express);
+
+passport.use(new JwtStrategy(strategies.jwtOpts, strategies.jwtAuth));
+
+app.use(errorHandler({server: app}));
 
 module.exports = app;

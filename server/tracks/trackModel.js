@@ -6,4 +6,4 @@ var TrackSchema = new mongoose.Schema({
  url: String,
 });
 
-module.exports = mongoose.model('Track', TrackSchema);
+module.exports = TrackSchema;

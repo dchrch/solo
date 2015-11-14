@@ -6,4 +6,7 @@
     <audio src="{{song.url}}" controls>
     </audio>
   </div>
+  <div ng-if="!data.tracks.length">
+    <p>You haven't uploaded any tracks.</p>
+  </div>
 </div>

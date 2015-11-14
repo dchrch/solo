@@ -20,6 +20,8 @@
   ],
   "dependencies": {
     "angular": "~1.4.6",
-    "angular-route": "~1.4.6"
+    "angular-route": "~1.4.6",
+    "angular-sanitize": "~1.4.7",
+    "satellizer": "~0.12.5"
   }
 }
